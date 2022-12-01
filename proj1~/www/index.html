@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOGIN</title>
+    <style>
+        body{
+            background-color: cadetblue;
+        }
+
+        div{
+            border: 1px solid black;
+            padding-top: 100px;
+            padding-bottom: 100px;
+            margin-top: 20px;
+            
+
+        }
+
+        .login{
+            background-color: bisque;
+        }
+
+        .register{
+            background-color: darkgrey;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="login">
+        <center>LOGIN</center>
+        <label for="">USER</label>
+        <input type="text" id="userLogin"><br>
+        <label for="">PASSWORD</label>
+        <input type="text" id="passwordLogin"><br>
+        <button onclick="login()">ENVIAR</button>
+
+    </div>
+    <div class="register">
+        <center>REGISTER</center>
+        <label for="">USER</label>
+        <input type="text" id="userRegis"><br>
+        <label for="">PASSWORD</label>
+        <input type="text" id="passwordRegis"><br>
+        <button onclick="register()">ENVIAR</button>
+    </div>
+    <script>
+        let users= {
+                andres: "andres123",
+                juan: "123"
+            };
+        function login(){
+            let user= document.getElementById("userLogin").value;
+            let password= document.getElementById("passwordLogin").value;
+            
+            if(users.hasOwnProperty(user) == true){
+                if(users[user] == password){
+                    alert("CORRECTO");
+                }
+                else{
+                    alert("CONTRASEÑA INCORRECTA");
+                }
+            }
+            else{
+                alert("INCORRECTO");
+            }
+
+        }
+        function register(){
+            let user= document.getElementById("userRegis").value;
+            let password= document.getElementById("passwordRegis").value;
+            users[user]= password;
+            console.log(users);
+            alert("SE HA REGISTRADO CORRECTAMENTE");          
+        }
+    </script>
+</body>
+</html>
