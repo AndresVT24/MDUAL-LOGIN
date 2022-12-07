@@ -15,8 +15,7 @@
             padding-top: 100px;
             padding-bottom: 100px;
             margin-top: 20px;
-            
-
+            padding-left: 50px;
         }
 
         .login{
@@ -32,32 +31,33 @@
 <body>
     <div class="login">
         <center>LOGIN</center>
-        <label for="">USER</label>
-        <input type="text" id="userLogin"><br>
-        <label for="">PASSWORD</label>
-        <input type="text" id="passwordLogin"><br>
+        <p>USER <input type="text" id="userLogin"><br></p>
+        <p>PASSWORD <input type="text" id="passwordLogin"><br></p>
         <button onclick="login()">ENVIAR</button>
 
     </div>
     <div class="register">
         <center>REGISTER</center>
-        <label for="">USER</label>
-        <input type="text" id="userRegis"><br>
-        <label for="">PASSWORD</label>
-        <input type="text" id="passwordRegis"><br>
+        <p>USER <input type="text" id="userRegis"><br></p>
+        <p>PASSWORD <input type="text" id="passwordRegis"><br></p>
+        <p>EMAIL <input type="email" id="emailRegis"></p>
         <button onclick="register()">ENVIAR</button>
     </div>
     <script>
         let users= {
-                andres: "andres123",
-                juan: "123"
-            };
+                andres: {
+                    password: "andres123", email: "andres@gmail.com"
+                },
+                juan: {
+                    password: "123", email: "juan@gmail.com"
+                }
+                };
         function login(){
             let user= document.getElementById("userLogin").value;
             let password= document.getElementById("passwordLogin").value;
-            
+
             if(users.hasOwnProperty(user) == true){
-                if(users[user] == password){
+                if(users[user]['password']== password){
                     alert("CORRECTO");
                 }
                 else{
@@ -72,9 +72,24 @@
         function register(){
             let user= document.getElementById("userRegis").value;
             let password= document.getElementById("passwordRegis").value;
-            users[user]= password;
-            console.log(users);
-            alert("SE HA REGISTRADO CORRECTAMENTE");          
+            let email= document.getElementById("emailRegis").value;
+            let ver= true;
+            if(users.hasOwnProperty(user)){
+                alert("YA EXISTE ESTE USERNAME")
+            }
+            else{
+                for( let i in users){
+                    if(users[i]['email'] == email){
+                        alert("ESTE EMAIL YA EXISTE");
+                        ver= false;
+                        break;
+                    }
+                }
+                if(ver == true){
+                    users[user]= {'password': password, 'email':email}
+                    alert("SE HA REGISTRADO CORRECTAMENTE");
+                } 
+            }         
         }
     </script>
 </body>
